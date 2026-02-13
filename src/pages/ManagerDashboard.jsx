@@ -1,0 +1,146 @@
+import React, { useState, useEffect } from 'react';
+import { base44 } from '@/api/base44Client';
+import { useQuery } from '@tanstack/react-query';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Plus, Search, Users } from 'lucide-react';
+import AgentCard from '../components/agents/AgentCard';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { useNavigate } from 'react-router-dom';
+import { createPageUrl } from './utils';
+
+export default function ManagerDashboard() {
+  const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [activePhase, setActivePhase] = useState('all');
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    base44.auth.me().then(setUser);
+  }, []);
+
+  const { data: agentManagers = [] } = useQuery({
+    queryKey: ['agentManagers', user?.email],
+    queryFn: () => base44.entities.AgentManager.filter({ manager_email: user?.email }),
+    enabled: !!user,
+  });
+
+  const agentIds = agentManagers.map(am => am.agent_id);
+
+  const { data: agents = [] } = useQuery({
+    queryKey: ['agents', agentIds],
+    queryFn: async () => {
+      if (agentIds.length === 0) return [];
+      const allAgents = await base44.entities.Agent.list();
+      return allAgents.filter(agent => agentIds.includes(agent.id));
+    },
+    enabled: agentIds.length > 0,
+  });
+
+  const filteredAgents = agents.filter(agent => {
+    const matchesSearch = 
+      agent.first_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      agent.last_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      agent.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      agent.agency_name?.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    const matchesPhase = activePhase === 'all' || agent.phase === activePhase;
+    
+    return matchesSearch && matchesPhase;
+  });
+
+  const phaseCounts = {
+    all: agents.length,
+    inquiry: agents.filter(a => a.phase === 'inquiry').length,
+    onboarding: agents.filter(a => a.phase === 'onboarding').length,
+    training: agents.filter(a => a.phase === 'training').length,
+    certification: agents.filter(a => a.phase === 'certification').length,
+    active: agents.filter(a => a.phase === 'active').length,
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto p-6">
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Agent Pipeline</h1>
+            <p className="text-gray-600 mt-1">Manage your agents through the onboarding process</p>
+          </div>
+          <Button
+            onClick={() => navigate(createPageUrl('AgentIntake'))}
+            className="bg-blue-600 hover:bg-blue-700"
+          >
+            <Plus className="w-5 h-5 mr-2" />
+            Add New Agent
+          </Button>
+        </div>
+
+        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <Input
+                placeholder="Search agents..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10"
+              />
+            </div>
+          </div>
+
+          <Tabs value={activePhase} onValueChange={setActivePhase}>
+            <TabsList className="grid grid-cols-6 w-full">
+              <TabsTrigger value="all">
+                All ({phaseCounts.all})
+              </TabsTrigger>
+              <TabsTrigger value="inquiry">
+                Inquiry ({phaseCounts.inquiry})
+              </TabsTrigger>
+              <TabsTrigger value="onboarding">
+                Onboarding ({phaseCounts.onboarding})
+              </TabsTrigger>
+              <TabsTrigger value="training">
+                Training ({phaseCounts.training})
+              </TabsTrigger>
+              <TabsTrigger value="certification">
+                Certification ({phaseCounts.certification})
+              </TabsTrigger>
+              <TabsTrigger value="active">
+                Active ({phaseCounts.active})
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+        </div>
+
+        {filteredAgents.length === 0 ? (
+          <div className="bg-white rounded-lg shadow-sm p-12 text-center">
+            <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">No agents found</h3>
+            <p className="text-gray-600 mb-4">
+              {searchTerm ? 'Try adjusting your search criteria' : 'Get started by adding your first agent'}
+            </p>
+            {!searchTerm && (
+              <Button
+                onClick={() => navigate(createPageUrl('AgentIntake'))}
+                className="bg-blue-600 hover:bg-blue-700"
+              >
+                <Plus className="w-5 h-5 mr-2" />
+                Add New Agent
+              </Button>
+            )}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredAgents.map(agent => (
+              <AgentCard
+                key={agent.id}
+                agent={agent}
+                onClick={(agent) => navigate(createPageUrl('AgentDetail') + '?id=' + agent.id)}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}

@@ -47,8 +47,24 @@
  *
  * The mainPage value must match a key in the PAGES object exactly.
  */
+import ManagerDashboard from './pages/ManagerDashboard';
+import AgentIntake from './pages/AgentIntake';
+import AgentDetail from './pages/AgentDetail';
+import AgentPortal from './pages/AgentPortal';
+import LearningCenter from './pages/LearningCenter';
+import ResourceManagement from './pages/ResourceManagement';
 
-export const pagesConfig = {
-	Pages: {}
+
+export const PAGES = {
+    "ManagerDashboard": ManagerDashboard,
+    "AgentIntake": AgentIntake,
+    "AgentDetail": AgentDetail,
+    "AgentPortal": AgentPortal,
+    "LearningCenter": LearningCenter,
+    "ResourceManagement": ResourceManagement,
 }
 
+export const pagesConfig = {
+    mainPage: "ManagerDashboard",
+    Pages: PAGES,
+};

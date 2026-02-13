@@ -7,7 +7,7 @@ import { Plus, Search, Users } from 'lucide-react';
 import AgentCard from '../components/agents/AgentCard';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { useNavigate } from 'react-router-dom';
-import { createPageUrl } from './utils';
+import { createPageUrl } from '@/utils';
 
 export default function ManagerDashboard() {
   const navigate = useNavigate();

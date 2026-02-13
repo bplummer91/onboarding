@@ -8,7 +8,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { ArrowLeft, Search, BookOpen } from 'lucide-react';
 import ResourceCard from '../components/resources/ResourceCard';
 import { useNavigate } from 'react-router-dom';
-import { createPageUrl } from './utils';
+import { createPageUrl } from '@/utils';
 
 export default function LearningCenter() {
   const navigate = useNavigate();

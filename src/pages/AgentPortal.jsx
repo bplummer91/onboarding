@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { BookOpen, CheckCircle2, Clock } from 'lucide-react';
 import PhaseIndicator from '../components/agents/PhaseIndicator';
 import { useNavigate } from 'react-router-dom';
-import { createPageUrl } from './utils';
+import { createPageUrl } from '@/utils';
 
 const phaseInfo = {
   inquiry: {

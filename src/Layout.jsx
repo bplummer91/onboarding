@@ -16,7 +16,7 @@ export default function Layout({ children, currentPageName }) {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <div className="fixed top-2 right-6 z-50">
+      <div className="fixed top-1 right-6 z-50">
         <ThemeToggle />
       </div>
       {children}

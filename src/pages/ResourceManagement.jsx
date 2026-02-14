@@ -68,6 +68,14 @@ export default function ResourceManagement() {
     const file = e.target.files[0];
     if (!file) return;
 
+    // Check file size (50MB limit)
+    const maxSize = 50 * 1024 * 1024; // 50MB in bytes
+    if (file.size > maxSize) {
+      toast.error('File is too large. Maximum size is 50MB. Please compress or use a smaller file.');
+      e.target.value = ''; // Reset file input
+      return;
+    }
+
     setUploading(true);
     try {
       const { file_url } = await base44.integrations.Core.UploadFile({ file });

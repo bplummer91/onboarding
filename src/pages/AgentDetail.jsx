@@ -13,7 +13,7 @@ import { createPageUrl } from '@/utils';
 import { toast } from 'sonner';
 import PhaseIndicator from '../components/agents/PhaseIndicator';
 
-const phases = ['initial_call', 'enrolled_in_xcel', 'taking_exam', 'licensing', 'contracting', 'onboarding_complete'];
+const phases = ['initial_call', 'pre_licensing', 'taking_exam', 'licensing', 'contracting', 'onboarding_complete'];
 
 export default function AgentDetail() {
   const navigate = useNavigate();

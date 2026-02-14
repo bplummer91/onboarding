@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 
 const phases = [
   { id: 'initial_call', label: 'Initial Call' },
-  { id: 'enrolled_in_xcel', label: 'Enrolled in Xcel' },
+  { id: 'pre_licensing', label: 'Pre-Licensing' },
   { id: 'taking_exam', label: 'Taking Exam' },
   { id: 'licensing', label: 'Licensing' },
   { id: 'contracting', label: 'Contracting' },

@@ -7,7 +7,7 @@ import PhaseIndicator from './PhaseIndicator';
 
 const phaseColors = {
   initial_call: 'bg-blue-100 text-blue-800',
-  enrolled_in_xcel: 'bg-indigo-100 text-indigo-800',
+  pre_licensing: 'bg-indigo-100 text-indigo-800',
   taking_exam: 'bg-purple-100 text-purple-800',
   licensing: 'bg-yellow-100 text-yellow-800',
   contracting: 'bg-orange-100 text-orange-800',

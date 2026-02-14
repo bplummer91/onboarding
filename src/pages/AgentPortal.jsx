@@ -14,10 +14,10 @@ const phaseInfo = {
     description: 'Welcome! We\'re excited to begin your journey with us.',
     nextSteps: ['Complete your initial information form', 'Review the welcome materials', 'Schedule your enrollment call']
   },
-  enrolled_in_xcel: {
-    title: 'Enrolled in Xcel',
-    description: 'You\'re now enrolled in Xcel Energy. Next step is preparing for your exam.',
-    nextSteps: ['Access Xcel training materials', 'Complete required courses', 'Prepare for the upcoming exam']
+  pre_licensing: {
+    title: 'Pre-Licensing',
+    description: 'Prepare for your licensing journey. Complete the required training and coursework.',
+    nextSteps: ['Access training materials', 'Complete required courses', 'Prepare for the upcoming exam']
   },
   taking_exam: {
     title: 'Taking Exam',

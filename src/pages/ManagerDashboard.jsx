@@ -52,7 +52,7 @@ export default function ManagerDashboard() {
   const phaseCounts = {
     all: agents.length,
     initial_call: agents.filter(a => a.phase === 'initial_call').length,
-    enrolled_in_xcel: agents.filter(a => a.phase === 'enrolled_in_xcel').length,
+    pre_licensing: agents.filter(a => a.phase === 'pre_licensing').length,
     taking_exam: agents.filter(a => a.phase === 'taking_exam').length,
     licensing: agents.filter(a => a.phase === 'licensing').length,
     contracting: agents.filter(a => a.phase === 'contracting').length,
@@ -97,8 +97,8 @@ export default function ManagerDashboard() {
               <TabsTrigger value="initial_call">
                 Initial Call ({phaseCounts.initial_call})
               </TabsTrigger>
-              <TabsTrigger value="enrolled_in_xcel">
-                Enrolled ({phaseCounts.enrolled_in_xcel})
+              <TabsTrigger value="pre_licensing">
+                Pre-Licensing ({phaseCounts.pre_licensing})
               </TabsTrigger>
               <TabsTrigger value="taking_exam">
                 Exam ({phaseCounts.taking_exam})

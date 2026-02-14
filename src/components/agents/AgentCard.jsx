@@ -6,11 +6,12 @@ import { format } from 'date-fns';
 import PhaseIndicator from './PhaseIndicator';
 
 const phaseColors = {
-  inquiry: 'bg-yellow-100 text-yellow-800',
-  onboarding: 'bg-blue-100 text-blue-800',
-  training: 'bg-purple-100 text-purple-800',
-  certification: 'bg-orange-100 text-orange-800',
-  active: 'bg-green-100 text-green-800'
+  initial_call: 'bg-blue-100 text-blue-800',
+  enrolled_in_xcel: 'bg-indigo-100 text-indigo-800',
+  taking_exam: 'bg-purple-100 text-purple-800',
+  licensing: 'bg-yellow-100 text-yellow-800',
+  contracting: 'bg-orange-100 text-orange-800',
+  onboarding_complete: 'bg-green-100 text-green-800'
 };
 
 export default function AgentCard({ agent, onClick }) {
@@ -25,8 +26,8 @@ export default function AgentCard({ agent, onClick }) {
             <h3 className="text-lg font-semibold">
               {agent.first_name} {agent.last_name}
             </h3>
-            <Badge className={phaseColors[agent.phase]}>
-              {agent.phase.charAt(0).toUpperCase() + agent.phase.slice(1)}
+            <Badge className={phaseColors[agent.phase] || 'bg-gray-100 text-gray-800'}>
+              {agent.phase.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
             </Badge>
           </div>
         </div>

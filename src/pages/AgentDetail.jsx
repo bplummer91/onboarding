@@ -13,7 +13,7 @@ import { createPageUrl } from '@/utils';
 import { toast } from 'sonner';
 import PhaseIndicator from '../components/agents/PhaseIndicator';
 
-const phases = ['inquiry', 'onboarding', 'training', 'certification', 'active'];
+const phases = ['initial_call', 'enrolled_in_xcel', 'taking_exam', 'licensing', 'contracting', 'onboarding_complete'];
 
 export default function AgentDetail() {
   const navigate = useNavigate();
@@ -92,7 +92,7 @@ export default function AgentDetail() {
     );
   }
 
-  const canMoveToNext = formData.phase !== 'active';
+  const canMoveToNext = formData.phase !== 'onboarding_complete';
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
@@ -126,7 +126,7 @@ export default function AgentDetail() {
                   disabled={updateAgentMutation.isPending}
                   className="bg-green-600 hover:bg-green-700"
                 >
-                  Move to {phases[phases.indexOf(formData.phase) + 1]?.charAt(0).toUpperCase() + phases[phases.indexOf(formData.phase) + 1]?.slice(1)}
+                  Move to {phases[phases.indexOf(formData.phase) + 1]?.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </div>
@@ -197,7 +197,7 @@ export default function AgentDetail() {
                     <SelectContent>
                       {phases.map(phase => (
                         <SelectItem key={phase} value={phase}>
-                          {phase.charAt(0).toUpperCase() + phase.slice(1)}
+                          {phase.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
                         </SelectItem>
                       ))}
                     </SelectContent>

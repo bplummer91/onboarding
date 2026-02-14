@@ -47,20 +47,20 @@
  *
  * The mainPage value must match a key in the PAGES object exactly.
  */
-import ManagerDashboard from './pages/ManagerDashboard';
-import AgentIntake from './pages/AgentIntake';
 import AgentDetail from './pages/AgentDetail';
+import AgentIntake from './pages/AgentIntake';
 import AgentPortal from './pages/AgentPortal';
 import LearningCenter from './pages/LearningCenter';
+import ManagerDashboard from './pages/ManagerDashboard';
 import ResourceManagement from './pages/ResourceManagement';
 
 
 export const PAGES = {
-    "ManagerDashboard": ManagerDashboard,
-    "AgentIntake": AgentIntake,
     "AgentDetail": AgentDetail,
+    "AgentIntake": AgentIntake,
     "AgentPortal": AgentPortal,
     "LearningCenter": LearningCenter,
+    "ManagerDashboard": ManagerDashboard,
     "ResourceManagement": ResourceManagement,
 }
 

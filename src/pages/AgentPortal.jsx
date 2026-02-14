@@ -9,30 +9,35 @@ import { useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 
 const phaseInfo = {
-  inquiry: {
-    title: 'Inquiry Phase',
-    description: 'Welcome! You\'re just getting started. Review the basics and get familiar with the process.',
-    nextSteps: ['Complete initial paperwork', 'Review agency overview', 'Schedule intro call']
+  initial_call: {
+    title: 'Initial Call',
+    description: 'Welcome! We\'re excited to begin your journey with us.',
+    nextSteps: ['Complete your initial information form', 'Review the welcome materials', 'Schedule your enrollment call']
   },
-  onboarding: {
-    title: 'Onboarding Phase',
-    description: 'Great progress! Now it\'s time to complete your onboarding documentation and setup.',
-    nextSteps: ['Submit required documents', 'Complete background check', 'Set up your accounts']
+  enrolled_in_xcel: {
+    title: 'Enrolled in Xcel',
+    description: 'You\'re now enrolled in Xcel Energy. Next step is preparing for your exam.',
+    nextSteps: ['Access Xcel training materials', 'Complete required courses', 'Prepare for the upcoming exam']
   },
-  training: {
-    title: 'Training Phase',
-    description: 'Time to learn! Complete all training modules to build your knowledge and skills.',
-    nextSteps: ['Complete training modules', 'Attend training sessions', 'Pass training assessments']
+  taking_exam: {
+    title: 'Taking Exam',
+    description: 'Time to demonstrate your knowledge and skills.',
+    nextSteps: ['Review study materials', 'Schedule your exam', 'Complete the exam']
   },
-  certification: {
-    title: 'Certification Phase',
-    description: 'Almost there! Complete your certification requirements to become fully qualified.',
-    nextSteps: ['Pass certification exam', 'Complete final review', 'Submit certification forms']
+  licensing: {
+    title: 'Licensing',
+    description: 'Get your official license to operate.',
+    nextSteps: ['Submit fingerprinting application', 'Complete required documentation', 'Apply for your license']
   },
-  active: {
-    title: 'Active Agent',
-    description: 'Congratulations! You\'re now an active agent. Keep learning and growing!',
-    nextSteps: ['Continue professional development', 'Access advanced resources', 'Stay up to date']
+  contracting: {
+    title: 'Contracting',
+    description: 'Finalize your contract and prepare to go active.',
+    nextSteps: ['Review and sign contract documents', 'Set up payment information', 'Complete final paperwork']
+  },
+  onboarding_complete: {
+    title: 'Onboarding Complete!',
+    description: 'Congratulations! You\'re now fully onboarded and ready to work.',
+    nextSteps: ['Start taking assignments', 'Continue learning and growing', 'Reach out if you need support']
   }
 };
 

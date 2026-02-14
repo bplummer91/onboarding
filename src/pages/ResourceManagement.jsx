@@ -13,11 +13,12 @@ import { toast } from 'sonner';
 import ResourceCard from '../components/resources/ResourceCard';
 
 const phases = [
-  { id: 'inquiry', label: 'Inquiry' },
-  { id: 'onboarding', label: 'Onboarding' },
-  { id: 'training', label: 'Training' },
-  { id: 'certification', label: 'Certification' },
-  { id: 'active', label: 'Active' }
+  { id: 'initial_call', label: 'Initial Call' },
+  { id: 'enrolled_in_xcel', label: 'Enrolled in Xcel' },
+  { id: 'taking_exam', label: 'Taking Exam' },
+  { id: 'licensing', label: 'Licensing' },
+  { id: 'contracting', label: 'Contracting' },
+  { id: 'onboarding_complete', label: 'Onboarding Complete' }
 ];
 
 export default function ResourceManagement() {

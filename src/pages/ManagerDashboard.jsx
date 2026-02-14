@@ -51,11 +51,12 @@ export default function ManagerDashboard() {
 
   const phaseCounts = {
     all: agents.length,
-    inquiry: agents.filter(a => a.phase === 'inquiry').length,
-    onboarding: agents.filter(a => a.phase === 'onboarding').length,
-    training: agents.filter(a => a.phase === 'training').length,
-    certification: agents.filter(a => a.phase === 'certification').length,
-    active: agents.filter(a => a.phase === 'active').length,
+    initial_call: agents.filter(a => a.phase === 'initial_call').length,
+    enrolled_in_xcel: agents.filter(a => a.phase === 'enrolled_in_xcel').length,
+    taking_exam: agents.filter(a => a.phase === 'taking_exam').length,
+    licensing: agents.filter(a => a.phase === 'licensing').length,
+    contracting: agents.filter(a => a.phase === 'contracting').length,
+    onboarding_complete: agents.filter(a => a.phase === 'onboarding_complete').length,
   };
 
   return (
@@ -89,24 +90,27 @@ export default function ManagerDashboard() {
           </div>
 
           <Tabs value={activePhase} onValueChange={setActivePhase}>
-            <TabsList className="grid grid-cols-6 w-full">
+            <TabsList className="grid grid-cols-7 w-full">
               <TabsTrigger value="all">
                 All ({phaseCounts.all})
               </TabsTrigger>
-              <TabsTrigger value="inquiry">
-                Inquiry ({phaseCounts.inquiry})
+              <TabsTrigger value="initial_call">
+                Initial Call ({phaseCounts.initial_call})
               </TabsTrigger>
-              <TabsTrigger value="onboarding">
-                Onboarding ({phaseCounts.onboarding})
+              <TabsTrigger value="enrolled_in_xcel">
+                Enrolled ({phaseCounts.enrolled_in_xcel})
               </TabsTrigger>
-              <TabsTrigger value="training">
-                Training ({phaseCounts.training})
+              <TabsTrigger value="taking_exam">
+                Exam ({phaseCounts.taking_exam})
               </TabsTrigger>
-              <TabsTrigger value="certification">
-                Certification ({phaseCounts.certification})
+              <TabsTrigger value="licensing">
+                Licensing ({phaseCounts.licensing})
               </TabsTrigger>
-              <TabsTrigger value="active">
-                Active ({phaseCounts.active})
+              <TabsTrigger value="contracting">
+                Contracting ({phaseCounts.contracting})
+              </TabsTrigger>
+              <TabsTrigger value="onboarding_complete">
+                Complete ({phaseCounts.onboarding_complete})
               </TabsTrigger>
             </TabsList>
           </Tabs>

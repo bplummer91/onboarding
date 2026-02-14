@@ -19,8 +19,14 @@ const typeColors = {
 export default function ResourceCard({ resource }) {
   const Icon = typeIcons[resource.type];
   
+  const handleOpen = () => {
+    if (resource.file_url) {
+      window.open(resource.file_url, '_blank', 'noopener,noreferrer');
+    }
+  };
+  
   return (
-    <Card className="hover:shadow-md transition-shadow">
+    <Card className="hover:shadow-md transition-shadow cursor-pointer" onClick={handleOpen}>
       <CardHeader>
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-start gap-3 flex-1">
@@ -41,7 +47,10 @@ export default function ResourceCard({ resource }) {
           <Button
             variant="outline"
             className="w-full"
-            onClick={() => window.open(resource.file_url, '_blank')}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleOpen();
+            }}
           >
             <ExternalLink className="w-4 h-4 mr-2" />
             Open Resource

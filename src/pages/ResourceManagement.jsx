@@ -69,10 +69,15 @@ export default function ResourceManagement() {
     if (!file) return;
 
     setUploading(true);
-    const { file_url } = await base44.integrations.Core.UploadFile({ file });
-    setFormData(prev => ({ ...prev, file_url }));
-    setUploading(false);
-    toast.success('File uploaded!');
+    try {
+      const { file_url } = await base44.integrations.Core.UploadFile({ file });
+      setFormData(prev => ({ ...prev, file_url }));
+      toast.success('File uploaded!');
+    } catch (error) {
+      toast.error('Failed to upload file');
+    } finally {
+      setUploading(false);
+    }
   };
 
   const handlePhaseToggle = (phaseId) => {

@@ -8,6 +8,7 @@ import AgentCard from '../components/agents/AgentCard';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
+import ThemeToggle from '../components/ThemeToggle';
 
 export default function ManagerDashboard() {
   const navigate = useNavigate();
@@ -60,23 +61,26 @@ export default function ManagerDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto p-6">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Agent Pipeline</h1>
-            <p className="text-gray-600 mt-1">Manage your agents through the onboarding process</p>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Agent Pipeline</h1>
+            <p className="text-gray-600 dark:text-gray-400 mt-1">Manage your agents through the onboarding process</p>
           </div>
-          <Button
-            onClick={() => navigate(createPageUrl('AgentIntake'))}
-            className="bg-blue-600 hover:bg-blue-700"
-          >
-            <Plus className="w-5 h-5 mr-2" />
-            Add New Agent
-          </Button>
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+            <Button
+              onClick={() => navigate(createPageUrl('AgentIntake'))}
+              className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
+            >
+              <Plus className="w-5 h-5 mr-2" />
+              Add New Agent
+            </Button>
+          </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 mb-6">
           <div className="flex items-center gap-3 mb-4">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -117,16 +121,16 @@ export default function ManagerDashboard() {
         </div>
 
         {filteredAgents.length === 0 ? (
-          <div className="bg-white rounded-lg shadow-sm p-12 text-center">
-            <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">No agents found</h3>
-            <p className="text-gray-600 mb-4">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-12 text-center">
+            <Users className="w-12 h-12 text-gray-400 dark:text-gray-500 mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">No agents found</h3>
+            <p className="text-gray-600 dark:text-gray-400 mb-4">
               {searchTerm ? 'Try adjusting your search criteria' : 'Get started by adding your first agent'}
             </p>
             {!searchTerm && (
               <Button
                 onClick={() => navigate(createPageUrl('AgentIntake'))}
-                className="bg-blue-600 hover:bg-blue-700"
+                className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
               >
                 <Plus className="w-5 h-5 mr-2" />
                 Add New Agent

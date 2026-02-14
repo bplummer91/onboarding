@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import ThemeToggle from '@/components/ThemeToggle';
 
 export default function Layout({ children, currentPageName }) {
   useEffect(() => {
@@ -13,5 +14,12 @@ export default function Layout({ children, currentPageName }) {
     }
   }, []);
 
-  return <div className="min-h-screen bg-background text-foreground">{children}</div>;
+  return (
+    <div className="min-h-screen bg-background text-foreground">
+      <div className="fixed top-4 right-4 z-50">
+        <ThemeToggle />
+      </div>
+      {children}
+    </div>
+  );
 }

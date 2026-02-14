@@ -53,6 +53,7 @@ import AgentPortal from './pages/AgentPortal';
 import LearningCenter from './pages/LearningCenter';
 import ManagerDashboard from './pages/ManagerDashboard';
 import ResourceManagement from './pages/ResourceManagement';
+import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
@@ -67,4 +68,5 @@ export const PAGES = {
 export const pagesConfig = {
     mainPage: "ManagerDashboard",
     Pages: PAGES,
+    Layout: __Layout,
 };

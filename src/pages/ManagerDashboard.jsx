@@ -16,8 +16,13 @@ export default function ManagerDashboard() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    base44.auth.me().then(setUser);
-  }, []);
+    base44.auth.me().then(currentUser => {
+      setUser(currentUser);
+      if (currentUser?.user_type === 'agent') {
+        navigate(createPageUrl('AgentPortal'));
+      }
+    });
+  }, [navigate]);
 
   const { data: agentManagers = [] } = useQuery({
     queryKey: ['agentManagers', user?.email],

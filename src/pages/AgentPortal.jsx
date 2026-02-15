@@ -46,8 +46,13 @@ export default function AgentPortal() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    base44.auth.me().then(setUser);
-  }, []);
+    base44.auth.me().then(currentUser => {
+      setUser(currentUser);
+      if (currentUser?.user_type === 'manager') {
+        navigate(createPageUrl('ManagerDashboard'));
+      }
+    });
+  }, [navigate]);
 
   const { data: agents = [] } = useQuery({
     queryKey: ['myAgent', user?.email],

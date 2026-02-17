@@ -72,13 +72,22 @@ export default function ManagerDashboard() {
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Agent Pipeline</h1>
             <p className="text-gray-600 dark:text-gray-400 mt-1">Manage your agents through the onboarding process</p>
           </div>
-          <Button
-            onClick={() => navigate(createPageUrl('AgentIntake'))}
-            className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
-          >
-            <Plus className="w-5 h-5 mr-2" />
-            Add New Agent
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              onClick={() => navigate(createPageUrl('ManagerSettings'))}
+            >
+              <Settings className="w-4 h-4 mr-2" />
+              Settings
+            </Button>
+            <Button
+              onClick={() => navigate(createPageUrl('AgentIntake'))}
+              className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
+            >
+              <Plus className="w-5 h-5 mr-2" />
+              Add New Agent
+            </Button>
+          </div>
         </div>
 
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 mb-6">

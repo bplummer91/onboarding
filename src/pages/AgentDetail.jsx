@@ -107,11 +107,14 @@ export default function AgentDetail() {
           Back to Dashboard
         </Button>
 
-        <div className="mb-6">
-          <h1 className="text-3xl font-bold mb-2">
-            {agent.first_name} {agent.last_name}
-          </h1>
-          <p className="text-gray-600">Manage agent details and onboarding progress</p>
+        <div className="mb-6 flex items-start justify-between">
+          <div>
+            <h1 className="text-3xl font-bold mb-2">
+              {agent.first_name} {agent.last_name}
+            </h1>
+            <p className="text-gray-600">Manage agent details and onboarding progress</p>
+          </div>
+          <SendSmsDialog agent={agent} />
         </div>
 
         <Card className="mb-6">

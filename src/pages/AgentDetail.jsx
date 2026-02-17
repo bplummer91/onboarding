@@ -139,7 +139,9 @@ export default function AgentDetail() {
           </CardContent>
         </Card>
 
-        <Card>
+        <SmsThread agentId={agentId} />
+
+        <Card className="mt-6">
           <CardHeader>
             <CardTitle>Agent Details</CardTitle>
           </CardHeader>

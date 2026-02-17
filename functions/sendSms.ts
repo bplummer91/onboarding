@@ -42,6 +42,20 @@ Deno.serve(async (req) => {
       return Response.json({ error: data.message || 'Failed to send SMS' }, { status: 400 });
     }
 
+    // Save outbound message to database
+    const { agentId } = await req.json().catch(() => ({}));
+    if (agentId) {
+      await base44.asServiceRole.entities.SmsMessage.create({
+        agent_id: agentId,
+        direction: 'outbound',
+        body: message,
+        from_number: fromNumber,
+        to_number: to,
+        manager_email: user.email,
+        twilio_sid: data.sid,
+      });
+    }
+
     return Response.json({ success: true, sid: data.sid });
   } catch (error) {
     return Response.json({ error: error.message }, { status: 500 });

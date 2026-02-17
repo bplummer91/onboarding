@@ -9,7 +9,7 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { to, message } = await req.json();
+    const { to, message, agentId } = await req.json();
 
     if (!to || !message) {
       return Response.json({ error: 'Missing required fields: to, message' }, { status: 400 });
@@ -43,7 +43,6 @@ Deno.serve(async (req) => {
     }
 
     // Save outbound message to database
-    const { agentId } = await req.json().catch(() => ({}));
     if (agentId) {
       await base44.asServiceRole.entities.SmsMessage.create({
         agent_id: agentId,

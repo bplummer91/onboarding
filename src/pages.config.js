@@ -53,6 +53,7 @@ import AgentPortal from './pages/AgentPortal';
 import LearningCenter from './pages/LearningCenter';
 import ManagerDashboard from './pages/ManagerDashboard';
 import ResourceManagement from './pages/ResourceManagement';
+import ManagerSettings from './pages/ManagerSettings';
 import __Layout from './Layout.jsx';
 
 
@@ -63,6 +64,7 @@ export const PAGES = {
     "LearningCenter": LearningCenter,
     "ManagerDashboard": ManagerDashboard,
     "ResourceManagement": ResourceManagement,
+    "ManagerSettings": ManagerSettings,
 }
 
 export const pagesConfig = {

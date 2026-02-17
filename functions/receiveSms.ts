@@ -14,39 +14,39 @@ Deno.serve(async (req) => {
       return new Response('<Response/>', { headers: { 'Content-Type': 'text/xml' } });
     }
 
+    const incomingNormalized = from.replace(/\D/g, '');
+
     // Find the agent by phone number
     const allAgents = await base44.asServiceRole.entities.Agent.list();
     const agent = allAgents.find(a => {
       const normalized = a.phone?.replace(/\D/g, '');
-      const incomingNormalized = from.replace(/\D/g, '');
-      return normalized && incomingNormalized.endsWith(normalized) || normalized === incomingNormalized;
+      if (!normalized) return false;
+      return incomingNormalized.endsWith(normalized) || normalized.endsWith(incomingNormalized);
     });
 
     if (!agent) {
+      console.log('No agent found for number:', from);
       return new Response('<Response/>', { headers: { 'Content-Type': 'text/xml' } });
     }
 
-    // Find the manager who owns this Twilio number
-    const allUsers = await base44.asServiceRole.entities.User.list();
-    const manager = allUsers.find(u => {
-      const normalized = u.twilio_phone_number?.replace(/\D/g, '');
-      const toNormalized = to?.replace(/\D/g, '');
-      return normalized && toNormalized && (toNormalized.endsWith(normalized) || normalized === toNormalized);
-    });
+    // Find manager_email from existing outbound messages to this agent
+    const existingMessages = await base44.asServiceRole.entities.SmsMessage.filter({ agent_id: agent.id });
+    const outbound = existingMessages.find(m => m.direction === 'outbound' && m.manager_email);
+    const managerEmail = outbound?.manager_email || '';
 
     await base44.asServiceRole.entities.SmsMessage.create({
       agent_id: agent.id,
       direction: 'inbound',
       body: body,
       from_number: from,
-      to_number: to,
-      manager_email: manager?.email || '',
-      twilio_sid: sid,
+      to_number: to || '',
+      manager_email: managerEmail,
+      twilio_sid: sid || '',
     });
 
     return new Response('<Response/>', { headers: { 'Content-Type': 'text/xml' } });
   } catch (error) {
-    console.error('receiveSms error:', error);
+    console.error('receiveSms error:', error.message);
     return new Response('<Response/>', { headers: { 'Content-Type': 'text/xml' } });
   }
 });

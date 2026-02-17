@@ -17,7 +17,7 @@ export default function SendSmsDialog({ agent }) {
       return;
     }
     setSending(true);
-    const res = await base44.functions.invoke('sendSms', { to: agent.phone, message });
+    const res = await base44.functions.invoke('sendSms', { to: agent.phone, message, agentId: agent.id });
     setSending(false);
     if (res.data?.success) {
       toast.success('SMS sent successfully!');

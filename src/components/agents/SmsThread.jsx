@@ -9,7 +9,7 @@ export default function SmsThread({ agentId }) {
   const { data: messages = [] } = useQuery({
     queryKey: ['smsMessages', agentId],
     queryFn: () => base44.entities.SmsMessage.filter({ agent_id: agentId }, 'created_date', 100),
-    refetchInterval: 15000,
+    refetchInterval: 5000,
   });
 
   if (messages.length === 0) {

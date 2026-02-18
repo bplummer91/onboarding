@@ -52,8 +52,8 @@ import AgentIntake from './pages/AgentIntake';
 import AgentPortal from './pages/AgentPortal';
 import LearningCenter from './pages/LearningCenter';
 import ManagerDashboard from './pages/ManagerDashboard';
-import ResourceManagement from './pages/ResourceManagement';
 import ManagerSettings from './pages/ManagerSettings';
+import ResourceManagement from './pages/ResourceManagement';
 import __Layout from './Layout.jsx';
 
 
@@ -63,8 +63,8 @@ export const PAGES = {
     "AgentPortal": AgentPortal,
     "LearningCenter": LearningCenter,
     "ManagerDashboard": ManagerDashboard,
-    "ResourceManagement": ResourceManagement,
     "ManagerSettings": ManagerSettings,
+    "ResourceManagement": ResourceManagement,
 }
 
 export const pagesConfig = {

@@ -71,7 +71,7 @@ export default function AgentIntake() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-6">
       <div className="max-w-3xl mx-auto">
         <Button
           variant="ghost"
@@ -91,7 +91,7 @@ export default function AgentIntake() {
                 </div>
                 <div>
                   <CardTitle className="text-2xl">Add New Agent</CardTitle>
-                  <p className="text-sm text-gray-600 mt-1">Select the agent type to get started</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Select the agent type to get started</p>
                 </div>
               </div>
             </CardHeader>
@@ -137,7 +137,7 @@ export default function AgentIntake() {
               </div>
               <div>
                 <CardTitle className="text-2xl">{agentType === 'licensed' ? 'Licensed' : 'Unlicensed'} Agent Intake</CardTitle>
-                <p className="text-sm text-gray-600 mt-1">
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
                   {agentType === 'licensed' ? 'Will start at the Contracting phase' : 'Will start at the Initial Call phase'}
                   {' · '}
                   <button type="button" onClick={() => setAgentType(null)} className="text-blue-600 hover:underline">Change</button>

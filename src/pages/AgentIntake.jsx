@@ -23,6 +23,7 @@ export default function AgentIntake() {
     phone: '',
     agency_name: '',
     npn: '',
+    direct_upline: '',
     notes: '',
     date_started: new Date().toISOString().split('T')[0],
     phase: 'initial_call'

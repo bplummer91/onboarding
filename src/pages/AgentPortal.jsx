@@ -309,12 +309,12 @@ export default function AgentPortal() {
 
   if (!agent) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center p-6">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-6">
         <Card className="max-w-md">
           <CardContent className="pt-6 text-center">
             <Clock className="w-12 h-12 text-gray-400 mx-auto mb-4" />
             <h2 className="text-xl font-semibold mb-2">Onboarding Pending</h2>
-            <p className="text-gray-600">
+            <p className="text-gray-600 dark:text-gray-400">
               Your account is being set up. You'll receive an email when your onboarding begins.
             </p>
           </CardContent>

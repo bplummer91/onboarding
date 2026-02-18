@@ -532,10 +532,10 @@ export default function LearningCenter({
   // Keep existing guard pattern
   if (!agent) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center p-6">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-6">
         <Card className="max-w-md">
           <CardContent className="pt-6 text-center">
-            <p className="text-gray-600">Loading...</p>
+            <p className="text-gray-600 dark:text-gray-400">Loading...</p>
           </CardContent>
         </Card>
       </div>

@@ -71,10 +71,10 @@ export default function AgentDetail() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading agent details...</p>
+          <p className="text-gray-600 dark:text-gray-400">Loading agent details...</p>
         </div>
       </div>
     );
@@ -82,9 +82,9 @@ export default function AgentDetail() {
 
   if (!agent) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
         <div className="text-center">
-          <p className="text-gray-600">Agent not found</p>
+          <p className="text-gray-600 dark:text-gray-400">Agent not found</p>
           <Button onClick={() => navigate(createPageUrl('ManagerDashboard'))} className="mt-4">
             Back to Dashboard
           </Button>
@@ -96,7 +96,7 @@ export default function AgentDetail() {
   const canMoveToNext = formData.phase !== 'onboarding_complete';
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-6">
       <div className="max-w-4xl mx-auto">
         <Button
           variant="ghost"
@@ -112,7 +112,7 @@ export default function AgentDetail() {
             <h1 className="text-3xl font-bold mb-2">
               {agent.first_name} {agent.last_name}
             </h1>
-            <p className="text-gray-600">Manage agent details and onboarding progress</p>
+            <p className="text-gray-600 dark:text-gray-400">Manage agent details and onboarding progress</p>
           </div>
         </div>
 

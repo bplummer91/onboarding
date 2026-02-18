@@ -80,15 +80,64 @@ export default function AgentIntake() {
           Back to Dashboard
         </Button>
 
+        {!agentType ? (
+          <Card>
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-blue-100 rounded-lg">
+                  <UserPlus className="w-6 h-6 text-blue-600" />
+                </div>
+                <div>
+                  <CardTitle className="text-2xl">Add New Agent</CardTitle>
+                  <p className="text-sm text-gray-600 mt-1">Select the agent type to get started</p>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-4">
+                <button
+                  type="button"
+                  onClick={() => handleAgentTypeSelect('unlicensed')}
+                  className="flex flex-col items-center gap-4 p-8 border-2 border-dashed border-gray-200 rounded-xl hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950 transition-all text-left"
+                >
+                  <div className="p-4 bg-orange-100 rounded-full">
+                    <BookOpen className="w-8 h-8 text-orange-600" />
+                  </div>
+                  <div className="text-center">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Unlicensed Agent</h3>
+                    <p className="text-sm text-gray-500 mt-1">Starts from the beginning of the onboarding pipeline (Initial Call)</p>
+                  </div>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleAgentTypeSelect('licensed')}
+                  className="flex flex-col items-center gap-4 p-8 border-2 border-dashed border-gray-200 rounded-xl hover:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950 transition-all text-left"
+                >
+                  <div className="p-4 bg-green-100 rounded-full">
+                    <ShieldCheck className="w-8 h-8 text-green-600" />
+                  </div>
+                  <div className="text-center">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Licensed Agent</h3>
+                    <p className="text-sm text-gray-500 mt-1">Already licensed — starts at the Contracting phase</p>
+                  </div>
+                </button>
+              </div>
+            </CardContent>
+          </Card>
+        ) : (
         <Card>
           <CardHeader>
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-blue-100 rounded-lg">
-                <UserPlus className="w-6 h-6 text-blue-600" />
+              <div className={`p-2 rounded-lg ${agentType === 'licensed' ? 'bg-green-100' : 'bg-orange-100'}`}>
+                {agentType === 'licensed' ? <ShieldCheck className="w-6 h-6 text-green-600" /> : <BookOpen className="w-6 h-6 text-orange-600" />}
               </div>
               <div>
-                <CardTitle className="text-2xl">Agent Intake Form</CardTitle>
-                <p className="text-sm text-gray-600 mt-1">Add a new agent to the onboarding pipeline</p>
+                <CardTitle className="text-2xl">{agentType === 'licensed' ? 'Licensed' : 'Unlicensed'} Agent Intake</CardTitle>
+                <p className="text-sm text-gray-600 mt-1">
+                  {agentType === 'licensed' ? 'Will start at the Contracting phase' : 'Will start at the Initial Call phase'}
+                  {' · '}
+                  <button type="button" onClick={() => setAgentType(null)} className="text-blue-600 hover:underline">Change</button>
+                </p>
               </div>
             </div>
           </CardHeader>

@@ -190,6 +190,18 @@ export default function AgentIntake() {
                 </div>
               </div>
 
+              {agentType === 'licensed' && (
+                <div className="space-y-2">
+                  <Label htmlFor="npn">NPN (National Producer Number)</Label>
+                  <Input
+                    id="npn"
+                    value={formData.npn}
+                    onChange={(e) => handleChange('npn', e.target.value)}
+                    placeholder="e.g. 12345678"
+                  />
+                </div>
+              )}
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label htmlFor="agency_name">Agency Name</Label>

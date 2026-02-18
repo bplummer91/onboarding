@@ -126,6 +126,7 @@ export default function AgentIntake() {
           </Card>
         ) : (
         <Card>
+
           <CardHeader>
             <div className="flex items-center gap-3">
               <div className={`p-2 rounded-lg ${agentType === 'licensed' ? 'bg-green-100' : 'bg-orange-100'}`}>

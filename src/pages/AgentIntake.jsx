@@ -213,6 +213,18 @@ export default function AgentIntake() {
                   />
                 </div>
                 <div className="space-y-2">
+                  <Label htmlFor="direct_upline">Direct Upline</Label>
+                  <Input
+                    id="direct_upline"
+                    value={formData.direct_upline}
+                    onChange={(e) => handleChange('direct_upline', e.target.value)}
+                    placeholder="Name of direct upline"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
                   <Label htmlFor="date_started">Start Date</Label>
                   <Input
                     id="date_started"

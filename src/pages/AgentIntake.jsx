@@ -15,6 +15,7 @@ export default function AgentIntake() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [user, setUser] = useState(null);
+  const [agentType, setAgentType] = useState(null); // 'unlicensed' | 'licensed'
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
@@ -23,7 +24,7 @@ export default function AgentIntake() {
     agency_name: '',
     notes: '',
     date_started: new Date().toISOString().split('T')[0],
-    phase: 'inquiry'
+    phase: 'initial_call'
   });
 
   useEffect(() => {

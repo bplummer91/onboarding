@@ -80,7 +80,7 @@ export default function AgentIntake() {
           Back to Dashboard
         </Button>
 
-        {!agentType ? (
+        {!agentType && (
           <Card>
             <CardHeader>
               <div className="flex items-center gap-3">
@@ -124,7 +124,8 @@ export default function AgentIntake() {
               </div>
             </CardContent>
           </Card>
-        ) : (
+        )}
+        {agentType && (
         <Card>
 
           <CardHeader>

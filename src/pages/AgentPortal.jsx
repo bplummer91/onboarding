@@ -324,11 +324,11 @@ export default function AgentPortal() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 p-6">
       <div className="max-w-5xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Welcome, {agent.first_name}!</h1>
-          <p className="text-lg text-gray-600">Track your onboarding progress and access resources</p>
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">Welcome, {agent.first_name}!</h1>
+          <p className="text-lg text-gray-600 dark:text-gray-400">Track your onboarding progress and access resources</p>
         </div>
 
         <Card className="mb-8 border-2 border-blue-200 shadow-lg">
@@ -339,12 +339,12 @@ export default function AgentPortal() {
           <CardContent className="space-y-6">
             <PhaseIndicator currentPhase={agent.phase} />
 
-            <div className="bg-blue-50 rounded-lg p-6">
+            <div className="bg-blue-50 dark:bg-blue-950 rounded-lg p-6">
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                 <div>
-                  <h3 className="text-xl font-semibold text-blue-900 mb-2">{currentPhaseInfo.title}</h3>
-                  <p className="text-blue-700 mb-2">{currentPhaseInfo.description}</p>
-                  <p className="text-sm text-blue-800">
+                  <h3 className="text-xl font-semibold text-blue-900 dark:text-blue-200 mb-2">{currentPhaseInfo.title}</h3>
+                  <p className="text-blue-700 dark:text-blue-300 mb-2">{currentPhaseInfo.description}</p>
+                  <p className="text-sm text-blue-800 dark:text-blue-300">
                     <span className="font-semibold">{completedRequiredCount}</span>/{requiredItems.length || 0}{' '}
                     required action items completed
                   </p>
@@ -361,16 +361,16 @@ export default function AgentPortal() {
               </div>
 
               <div className="mt-5 space-y-2">
-                <p className="font-medium text-blue-900">Next Steps:</p>
+                <p className="font-medium text-blue-900 dark:text-blue-200">Next Steps:</p>
 
                 {nextThree.length === 0 ?
-                <p className="text-blue-700">No action items configured for this phase yet.</p> :
+                <p className="text-blue-700 dark:text-blue-300">No action items configured for this phase yet.</p> :
 
                 <ul className="space-y-3">
                     {nextThree.map((item) => {
                     const done = !!completedMap[item.key];
                     return (
-                      <li key={item.key} className="flex items-start justify-between gap-3 text-blue-700">
+                      <li key={item.key} className="flex items-start justify-between gap-3 text-blue-700 dark:text-blue-300">
                           <div className="flex items-start gap-2">
                             <CheckCircle2
                             className={`w-5 h-5 mt-0.5 flex-shrink-0 ${done ? 'text-emerald-600' : ''}`} />
@@ -386,7 +386,7 @@ export default function AgentPortal() {
                           {item.link_url ?
                         <Button
                           variant="outline"
-                          className="bg-white"
+                          className="bg-white dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200"
                           onClick={() => window.open(item.link_url, '_blank', 'noopener,noreferrer')}>
 
                               <ExternalLink className="w-4 h-4 mr-2" />
@@ -403,7 +403,7 @@ export default function AgentPortal() {
               <div className="mt-5">
                 <Button
                   variant="outline"
-                  className="bg-white"
+                  className="bg-white dark:bg-gray-800 dark:border-gray-600 dark:text-gray-200"
                   onClick={() => navigate(`${createPageUrl('LearningCenter')}?phase=${encodeURIComponent(agent.phase)}`)}>
 
                   View all action items + resources

@@ -107,12 +107,12 @@ export default function ResourceManagement() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-6">
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Resource Management</h1>
-            <p className="text-gray-600 mt-1">Upload and manage learning center resources</p>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Resource Management</h1>
+            <p className="text-gray-600 dark:text-gray-400 mt-1">Upload and manage learning center resources</p>
           </div>
           <Button
             onClick={() => setShowForm(!showForm)}
@@ -189,7 +189,7 @@ export default function ResourceManagement() {
                         disabled={uploading}
                         accept={formData.type === 'video' ? 'video/*' : '*'}
                       />
-                      {uploading && <p className="text-sm text-gray-600 mt-2">Uploading...</p>}
+                      {uploading && <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">Uploading...</p>}
                       {formData.file_url && !uploading && (
                         <p className="text-sm text-green-600 mt-2">✓ File uploaded</p>
                       )}

@@ -68,6 +68,42 @@ export default function ManagerSettings() {
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Settings</h1>
         <p className="text-gray-600 dark:text-gray-400 mb-8">Manage your integrations</p>
 
+        <Card className="mb-6">
+          <CardHeader>
+            <div className="flex items-center gap-3">
+              <KeyRound className="w-5 h-5 text-purple-600" />
+              <div>
+                <CardTitle>Master Code</CardTitle>
+                <CardDescription>Your unique code that ties agents to your account</CardDescription>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="flex gap-2 items-center">
+              <Input
+                value={masterCode}
+                onChange={e => setMasterCode(e.target.value)}
+                placeholder="No code set yet"
+                className="font-mono text-lg tracking-widest"
+              />
+              <Button type="button" variant="outline" onClick={generateCode} title="Generate new code">
+                <RefreshCw className="w-4 h-4" />
+              </Button>
+              {masterCode && (
+                <Button type="button" variant="outline" onClick={copyCode} title="Copy code">
+                  <Copy className="w-4 h-4" />
+                </Button>
+              )}
+            </div>
+            <div className="flex justify-end mt-4">
+              <Button onClick={saveMasterCode} disabled={saving} className="bg-purple-600 hover:bg-purple-700">
+                <Save className="w-4 h-4 mr-2" />
+                {saving ? 'Saving...' : 'Save Code'}
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
         <Card>
           <CardHeader>
             <div className="flex items-center gap-3">

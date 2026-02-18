@@ -114,7 +114,6 @@ export default function AgentDetail() {
             </h1>
             <p className="text-gray-600">Manage agent details and onboarding progress</p>
           </div>
-          <SendSmsDialog agent={agent} />
         </div>
 
         <Card className="mb-6">

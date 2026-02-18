@@ -210,6 +210,27 @@ export default function AgentDetail() {
                 </div>
               </div>
 
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="npn">NPN (National Producer Number)</Label>
+                  <Input
+                    id="npn"
+                    value={formData.npn || ''}
+                    onChange={(e) => handleChange('npn', e.target.value)}
+                    placeholder="e.g. 12345678"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="direct_upline">Direct Upline</Label>
+                  <Input
+                    id="direct_upline"
+                    value={formData.direct_upline || ''}
+                    onChange={(e) => handleChange('direct_upline', e.target.value)}
+                    placeholder="Name of direct upline"
+                  />
+                </div>
+              </div>
+
               <div className="space-y-2">
                 <Label htmlFor="date_started">Start Date</Label>
                 <Input

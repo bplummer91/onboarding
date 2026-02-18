@@ -51,6 +51,14 @@ export default function AgentIntake() {
     }
   });
 
+  const handleAgentTypeSelect = (type) => {
+    setAgentType(type);
+    setFormData(prev => ({
+      ...prev,
+      phase: type === 'licensed' ? 'contracting' : 'initial_call'
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     createAgentMutation.mutate(formData);

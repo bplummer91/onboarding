@@ -238,6 +238,7 @@ export default function AgentIntake() {
             </form>
           </CardContent>
         </Card>
+        )}
       </div>
     </div>
   );

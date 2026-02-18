@@ -4,19 +4,17 @@ Deno.serve(async (req) => {
   try {
     const base44 = createClientFromRequest(req);
     const formData = await req.formData();
-
     const from = formData.get('From');
     const to = formData.get('To');
     const body = formData.get('Body');
     const sid = formData.get('MessageSid');
 
     if (!from || !body) {
-      return new Response('<Response/>', { headers: { 'Content-Type': 'text/xml' } });
+      return new Response(null, { status: 204 });
     }
 
     const incomingNormalized = from.replace(/\D/g, '');
 
-    // Find the agent by phone number
     const allAgents = await base44.asServiceRole.entities.Agent.list();
     const agent = allAgents.find(a => {
       const normalized = a.phone?.replace(/\D/g, '');
@@ -26,10 +24,9 @@ Deno.serve(async (req) => {
 
     if (!agent) {
       console.log('No agent found for number:', from);
-      return new Response('<Response/>', { headers: { 'Content-Type': 'text/xml' } });
+      return new Response(null, { status: 204 });
     }
 
-    // Find manager_email from existing outbound messages to this agent
     const existingMessages = await base44.asServiceRole.entities.SmsMessage.filter({ agent_id: agent.id });
     const outbound = existingMessages.find(m => m.direction === 'outbound' && m.manager_email);
     const managerEmail = outbound?.manager_email || '';
@@ -44,9 +41,9 @@ Deno.serve(async (req) => {
       twilio_sid: sid || '',
     });
 
-    return new Response('<Response/>', { headers: { 'Content-Type': 'text/xml' } });
+    return new Response(null, { status: 204 });
   } catch (error) {
     console.error('receiveSms error:', error.message);
-    return new Response('<Response/>', { headers: { 'Content-Type': 'text/xml' } });
+    return new Response(null, { status: 204 });
   }
 });

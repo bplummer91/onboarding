@@ -12,6 +12,7 @@ import { toast } from 'sonner';
 export default function ManagerSettings() {
   const navigate = useNavigate();
   const [saving, setSaving] = useState(false);
+  const [masterCode, setMasterCode] = useState('');
   const [form, setForm] = useState({
     twilio_account_sid: '',
     twilio_auth_token: '',
@@ -21,6 +22,7 @@ export default function ManagerSettings() {
   useEffect(() => {
     base44.auth.me().then(user => {
       if (user) {
+        setMasterCode(user.master_code || '');
         setForm({
           twilio_account_sid: user.twilio_account_sid || '',
           twilio_auth_token: user.twilio_auth_token || '',
@@ -29,6 +31,23 @@ export default function ManagerSettings() {
       }
     });
   }, []);
+
+  const generateCode = () => {
+    const code = Math.random().toString(36).substring(2, 10).toUpperCase();
+    setMasterCode(code);
+  };
+
+  const saveMasterCode = async () => {
+    setSaving(true);
+    await base44.auth.updateMe({ master_code: masterCode });
+    setSaving(false);
+    toast.success('Master code saved!');
+  };
+
+  const copyCode = () => {
+    navigator.clipboard.writeText(masterCode);
+    toast.success('Copied to clipboard!');
+  };
 
   const handleSave = async (e) => {
     e.preventDefault();

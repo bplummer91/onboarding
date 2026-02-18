@@ -548,7 +548,7 @@ export default function LearningCenter({
   const phaseLabel = PHASE_LABELS[phaseToUse] || phaseToUse || "unknown";
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 p-6">
       <div className="max-w-6xl mx-auto">
         {!hideBack && (
           <Button variant="ghost" onClick={() => navigate(createPageUrl(backTo))} className="mb-6">
@@ -563,8 +563,8 @@ export default function LearningCenter({
             <BookOpen className="w-8 h-8 text-blue-600" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">{pageTitle}</h1>
-            <p className="text-gray-600">
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{pageTitle}</h1>
+            <p className="text-gray-600 dark:text-gray-400">
               {pageSubtitle}
               <span className="font-semibold capitalize">{phaseLabel}</span>
             </p>
@@ -577,29 +577,29 @@ export default function LearningCenter({
             <div className="flex items-start justify-between gap-4">
               <div>
                 <CardTitle className="text-xl">Action Items</CardTitle>
-                <p className="text-sm text-gray-600 mt-1">
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
                   Complete these to move through <span className="font-semibold">{phaseLabel}</span>.
                 </p>
               </div>
 
               <div className="text-right">
-                <div className="text-sm text-gray-600">
+                <div className="text-sm text-gray-600 dark:text-gray-400">
                   {requiredItems.length ? (
                     <>
-                      <span className="font-semibold text-gray-900">{completedRequiredCount}</span>/
+                      <span className="font-semibold text-gray-900 dark:text-white">{completedRequiredCount}</span>/
                       {requiredItems.length} required
                     </>
                   ) : (
                     "No required items"
                   )}
                 </div>
-                <div className="text-xs text-gray-500 mt-1">{progressPercent}% complete</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">{progressPercent}% complete</div>
               </div>
             </div>
 
             {/* Progress bar */}
             <div className="mt-4">
-              <div className="h-2 w-full bg-blue-100 rounded-full overflow-hidden">
+              <div className="h-2 w-full bg-blue-100 dark:bg-blue-900 rounded-full overflow-hidden">
                 <div className="h-full bg-blue-600" style={{ width: `${progressPercent}%` }} />
               </div>
             </div>
@@ -607,7 +607,7 @@ export default function LearningCenter({
 
           <CardContent className="pt-4">
             {actionItems.length === 0 ? (
-              <div className="py-6 text-center text-gray-600">No action items configured for this phase yet.</div>
+              <div className="py-6 text-center text-gray-600 dark:text-gray-400">No action items configured for this phase yet.</div>
             ) : (
               <div className="space-y-3">
                 {actionItems.map((item) => {
@@ -615,7 +615,7 @@ export default function LearningCenter({
                   return (
                     <div
                       key={item.key}
-                      className="flex flex-col md:flex-row md:items-center justify-between gap-3 p-4 bg-white rounded-lg border border-gray-200"
+                      className="flex flex-col md:flex-row md:items-center justify-between gap-3 p-4 bg-white dark:bg-gray-800 dark:border-gray-700 rounded-lg border border-gray-200"
                     >
                       <div className="flex items-start gap-3">
                         <Checkbox
@@ -627,7 +627,7 @@ export default function LearningCenter({
                         />
                         <div>
                           <div className="flex items-center gap-2">
-                            <p className={`font-semibold ${checked ? "text-gray-500 line-through" : "text-gray-900"}`}>
+                            <p className={`font-semibold ${checked ? "text-gray-500 dark:text-gray-500 line-through" : "text-gray-900 dark:text-white"}`}>
                               {item.title}
                             </p>
                             {item.required !== false && (
@@ -641,7 +641,7 @@ export default function LearningCenter({
                               </span>
                             )}
                           </div>
-                          {item.description && <p className="text-sm text-gray-600 mt-1">{item.description}</p>}
+                          {item.description && <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{item.description}</p>}
                         </div>
                       </div>
 
@@ -661,7 +661,7 @@ export default function LearningCenter({
                 })}
 
                 {progressLoading && (
-                  <div className="text-xs text-gray-500 mt-2">
+                  <div className="text-xs text-gray-500 dark:text-gray-400 mt-2">
                     Loading saved progress…
                   </div>
                 )}
@@ -675,7 +675,7 @@ export default function LearningCenter({
           <CardContent className="pt-6">
             <div className="flex flex-col md:flex-row gap-4">
               <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500" />
                 <Input
                   placeholder="Search resources..."
                   value={searchTerm}
@@ -701,8 +701,8 @@ export default function LearningCenter({
           <Card className="shadow-lg">
             <CardContent className="py-12 text-center">
               <BookOpen className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">No resources found</h3>
-              <p className="text-gray-600">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">No resources found</h3>
+              <p className="text-gray-600 dark:text-gray-400">
                 {searchTerm ? "Try adjusting your search criteria" : "Check back soon for new learning materials"}
               </p>
             </CardContent>

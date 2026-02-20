@@ -91,6 +91,7 @@ export default function ManagerDashboard() {
       }
     },
     enabled: agentIds.length > 0,
+    refetchInterval: 15000,
   });
 
   // Map agent id -> progress percent

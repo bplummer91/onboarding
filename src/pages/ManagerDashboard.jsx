@@ -33,6 +33,15 @@ const SORT_OPTIONS = [
 
 const PHASE_ORDER = ['initial_call', 'pre_licensing', 'taking_exam', 'licensing', 'contracting', 'onboarding_complete'];
 
+const PHASE_COLUMN_COLORS = {
+  initial_call:        { header: 'bg-blue-100 text-blue-800 dark:bg-blue-900/60 dark:text-blue-200',       badge: 'bg-blue-200 text-blue-800 dark:bg-blue-800 dark:text-blue-100',    body: 'bg-blue-50 dark:bg-blue-950/30' },
+  pre_licensing:       { header: 'bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-200', badge: 'bg-indigo-200 text-indigo-800 dark:bg-indigo-800 dark:text-indigo-100', body: 'bg-indigo-50 dark:bg-indigo-950/30' },
+  taking_exam:         { header: 'bg-purple-100 text-purple-800 dark:bg-purple-900/60 dark:text-purple-200', badge: 'bg-purple-200 text-purple-800 dark:bg-purple-800 dark:text-purple-100', body: 'bg-purple-50 dark:bg-purple-950/30' },
+  licensing:           { header: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/60 dark:text-yellow-200', badge: 'bg-yellow-200 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100', body: 'bg-yellow-50 dark:bg-yellow-950/30' },
+  contracting:         { header: 'bg-orange-100 text-orange-800 dark:bg-orange-900/60 dark:text-orange-200', badge: 'bg-orange-200 text-orange-800 dark:bg-orange-800 dark:text-orange-100', body: 'bg-orange-50 dark:bg-orange-950/30' },
+  onboarding_complete: { header: 'bg-green-100 text-green-800 dark:bg-green-900/60 dark:text-green-200',   badge: 'bg-green-200 text-green-800 dark:bg-green-800 dark:text-green-100',  body: 'bg-green-50 dark:bg-green-950/30' },
+};
+
 export default function ManagerDashboard() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');

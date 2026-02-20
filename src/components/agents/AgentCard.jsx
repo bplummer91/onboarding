@@ -41,7 +41,7 @@ function ProgressBar({ percent }) {
   );
 }
 
-export default function AgentCard({ agent, progressPercent = 0, onClick }) {
+export default function AgentCard({ agent, progressPercent = 0, onClick, compact = false }) {
   const lastActivity = agent.updated_date
     ? formatDistanceToNow(new Date(agent.updated_date), { addSuffix: true })
     : null;

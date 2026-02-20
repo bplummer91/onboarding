@@ -51,6 +51,19 @@ export default function ManagerDashboard() {
   const [filterCompletion, setFilterCompletion] = useState('all');
   const [sortBy, setSortBy] = useState('activity_desc');
   const [user, setUser] = useState(null);
+  const queryClient = useQueryClient();
+
+  // Live-refresh progress whenever any AgentActionProgress record changes
+  useEffect(() => {
+    try {
+      const unsub = base44.entities.AgentActionProgress.subscribe(() => {
+        queryClient.invalidateQueries({ queryKey: ['allAgentProgress'] });
+      });
+      return unsub;
+    } catch {
+      // entity may not support subscriptions
+    }
+  }, [queryClient]);
 
   useEffect(() => {
     base44.auth.me().then(currentUser => {

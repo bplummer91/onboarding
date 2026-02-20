@@ -276,34 +276,53 @@ export default function ManagerDashboard() {
           </p>
         </div>
 
-        {/* Agent Grid */}
-        {filteredAndSorted.length === 0 ? (
+        {/* Kanban Board */}
+        {agents.length === 0 ? (
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-12 text-center">
             <Users className="w-12 h-12 text-gray-400 dark:text-gray-500 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">No agents found</h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
-              {hasActiveFilters ? 'Try adjusting your filters or search' : 'Get started by adding your first agent'}
-            </p>
-            {!hasActiveFilters && (
-              <Button
-                onClick={() => navigate(createPageUrl('AgentIntake'))}
-                className="bg-blue-600 hover:bg-blue-700"
-              >
-                <Plus className="w-5 h-5 mr-2" />
-                Add New Agent
-              </Button>
-            )}
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">No agents yet</h3>
+            <p className="text-gray-600 dark:text-gray-400 mb-4">Get started by adding your first agent</p>
+            <Button onClick={() => navigate(createPageUrl('AgentIntake'))} className="bg-blue-600 hover:bg-blue-700">
+              <Plus className="w-5 h-5 mr-2" />Add New Agent
+            </Button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {filteredAndSorted.map(agent => (
-              <AgentCard
-                key={agent.id}
-                agent={agent}
-                progressPercent={progressMap[agent.id] ?? 0}
-                onClick={(a) => navigate(createPageUrl('AgentDetail') + '?id=' + a.id)}
-              />
-            ))}
+          <div className="overflow-x-auto pb-4">
+            <div className="flex gap-4 min-w-max">
+              {PHASES.map(phase => {
+                const columnAgents = filteredAndSorted.filter(a => a.phase === phase.id);
+                const phaseConfig = PHASE_COLUMN_COLORS[phase.id];
+                return (
+                  <div key={phase.id} className="w-72 flex-shrink-0">
+                    {/* Column header */}
+                    <div className={`rounded-t-lg px-4 py-3 ${phaseConfig.header}`}>
+                      <div className="flex items-center justify-between">
+                        <span className="font-semibold text-sm">{phase.label}</span>
+                        <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${phaseConfig.badge}`}>
+                          {columnAgents.length}
+                        </span>
+                      </div>
+                    </div>
+                    {/* Column body */}
+                    <div className={`rounded-b-lg min-h-40 p-2 space-y-2 ${phaseConfig.body}`}>
+                      {columnAgents.length === 0 ? (
+                        <div className="text-center text-xs text-gray-400 dark:text-gray-500 py-6">No agents</div>
+                      ) : (
+                        columnAgents.map(agent => (
+                          <AgentCard
+                            key={agent.id}
+                            agent={agent}
+                            progressPercent={progressMap[agent.id] ?? 0}
+                            onClick={(a) => navigate(createPageUrl('AgentDetail') + '?id=' + a.id)}
+                            compact
+                          />
+                        ))
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         )}
       </div>

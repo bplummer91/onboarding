@@ -46,6 +46,41 @@ export default function AgentCard({ agent, progressPercent = 0, onClick, compact
     ? formatDistanceToNow(new Date(agent.updated_date), { addSuffix: true })
     : null;
 
+  if (compact) {
+    return (
+      <Card
+        className="cursor-pointer hover:shadow-md transition-all border hover:border-blue-300 dark:hover:border-blue-600 bg-white dark:bg-gray-800"
+        onClick={() => onClick(agent)}
+      >
+        <CardContent className="p-3 space-y-2">
+          <div className="flex items-center gap-2 min-w-0">
+            <div className="w-7 h-7 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center flex-shrink-0">
+              <span className="text-xs font-bold text-blue-700 dark:text-blue-200">
+                {agent.first_name?.[0]}{agent.last_name?.[0]}
+              </span>
+            </div>
+            <div className="min-w-0">
+              <h3 className="font-semibold text-gray-900 dark:text-white truncate text-sm">
+                {agent.first_name} {agent.last_name}
+              </h3>
+              <p className="text-xs text-gray-500 dark:text-gray-400 truncate">{agent.email}</p>
+            </div>
+          </div>
+          <ProgressBar percent={progressPercent} />
+          {agent.agency_name && (
+            <div className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400">
+              <Building2 className="w-3 h-3 flex-shrink-0" />
+              <span className="truncate">{agent.agency_name}</span>
+            </div>
+          )}
+          {lastActivity && (
+            <span className="text-xs text-gray-400 dark:text-gray-500">Active {lastActivity}</span>
+          )}
+        </CardContent>
+      </Card>
+    );
+  }
+
   return (
     <Card
       className="cursor-pointer hover:shadow-lg transition-all border hover:border-blue-300 dark:hover:border-blue-600"
